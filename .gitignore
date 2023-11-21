@@ -76,3 +76,9 @@ $RECYCLE.BIN/
 
 # sftp configuration file
 sftp-config.json
+
+*tmp
+*.sdi
+*.dblwr
+*log.*
+*pem

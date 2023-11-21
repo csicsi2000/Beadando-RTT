@@ -1,0 +1,37 @@
+@startuml
+!theme amiga
+skinparam actorStyle Hollow
+left to right direction
+
+
+actor Felhasználó as Felhasználó
+actor Admin as Admin
+
+rectangle "Felhasználói Felület"{
+Felhasználó -- (Chat felület)
+(Chat felület) -- (Kérdés)
+(Chat felület) -- (Válasz)
+  
+  Admin -- (Admin felület)
+  (Admin felület) -- (Web scrape indítás)
+    (Admin felület) -- (Szerver státusz lekérése)
+}
+
+
+
+rectangle "Szerver"{
+  (Kérdés) -- (Feldolgozás)
+  (Feldolgozás) .> (Kontextusok lekérése)
+  (Kontextusok lekérése) .>  (Kontextusok értékelése)
+  (Kontextusok értékelése) .> (Legjobb kontextus megtalálása)
+  (Legjobb kontextus megtalálása) .> (Kérdés Válasz model)
+  (Kérdés Válasz model) -- (Válasz)
+  
+  (Web scrape indítás) -- (Oldalak beolvasása)
+  (Oldalak beolvasása) .> (Releváns információ kinyerése)
+  (Releváns információ kinyerése) .> (Kontextusok mentése)
+  
+  (Szerver státusz lekérése) -- (Szerver státusz)
+}
+
+@enduml
