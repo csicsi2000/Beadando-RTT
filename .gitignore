@@ -82,3 +82,5 @@ sftp-config.json
 *.dblwr
 *log.*
 *pem
+
+RTT-php/mysql/*
