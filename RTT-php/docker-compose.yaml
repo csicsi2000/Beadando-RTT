@@ -7,7 +7,11 @@ services:
       - "8080:8080"
     command: "php -S 0.0.0.0:8080 -t /var/www/html"
     volumes:
-      - ./src:/var/www/html
+      - type: bind
+        source: src
+        target: /var/www/html
+    depends_on:
+      - mysql
 
   mysql:
     container_name: mysql
@@ -17,12 +21,12 @@ services:
     volumes:
       - type: bind
         source: mysql
-        target: /var/lib/mysql
+        target: /var/lib/test/mysql
     environment:
-      MYSQL_USER: fsfkp7
+      MYSQL_USER: test
       MYSQL_PASSWORD: test
-      MYSQL_DATABASE: rtt_users
-      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: rtt-users
+      MYSQL_ROOT_PASSWORD: test
       MYSQL_ROOT_HOST: "0.0.0.0/0"
 
 volumes:
